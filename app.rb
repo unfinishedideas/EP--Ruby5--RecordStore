@@ -10,8 +10,13 @@ get('/') do
 end
 
 get('/albums') do
-  # binding.pry
-  @albums = Album.all
+  if params[:search]
+    @albums = Album.search(params[:search])
+  # elsif params[:sort]
+    # sort the stuff
+  else
+    @albums = Album.all
+  end
   erb(:albums)
 end
 
@@ -26,6 +31,7 @@ post('/albums') do
   album = Album.new(name, nil, artist, genre)
   album.save()
   @albums = Album.all()
+  @test = Album.all2()
   # binding.pry
   erb(:albums)
 end

@@ -15,6 +15,15 @@ describe '#Album' do
     end
   end
 
+  describe('#update') do
+    it("updates an album by id") do
+      album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz")
+      album.save()
+      album.update("A Love Supreme")
+      expect(album.name).to(eq("A Love Supreme"))
+    end
+  end
+
   describe('#save') do
     it("saves an album") do
       album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz") # nil added as second argument
@@ -63,22 +72,13 @@ describe '#Album' do
     end
   end
 
-  describe('#update') do
-    it("updates an album by id") do
-      album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz")
-      album.save()
-      album.update("A Love Supreme")
-      expect(album.name).to(eq("A Love Supreme"))
-    end
-  end
-
   # describe('.search') do
   #   it("is capable of searching the albums list by name") do
   #     album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz")
   #     album.save()
   #     album2 = Album.new("Led Zeppelin II", nil, "Led Zeppelin", "Rock")
-  #     album.save()
-  #     expect(Album.search("Led").to(eq(album2)))
+  #     album2.save()
+  #     expect(Album.search('Led')).to(eq(album2))
   #   end
   # end
 

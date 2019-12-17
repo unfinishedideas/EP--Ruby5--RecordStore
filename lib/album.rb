@@ -20,11 +20,19 @@ class Album
   end
 
   def ==(album_to_compare)
-    self.name() == album_to_compare.name()
+    self.name() == album_to_compare.name() && self.artist() == album_to_compare.artist() && self.genre() == album_to_compare.genre()
   end
+
+  # def ==(other_album)
+  #   self.name.eql?(other_album.name) && self.artist.eql?(other_album.artist) && self.genre.eql?(other_album.genre) && self.genre.eql?(other_album.genre)
+  # end
 
   def self.all
     @@albums.values()
+  end
+
+  def self.all2
+    return @@albums
   end
 
   def self.clear
@@ -36,9 +44,9 @@ class Album
     @@albums[id]
   end
 
-  # def self.search(string)
-  #   @@albums.select {|k,v| /#{string}/.match(v.name) }
-  # end
+  def self.search(string)
+    @@albums.values().select {|e| /#{string}/i.match(e.name) }
+  end
 
   def delete
     @@albums.delete(self.id)
