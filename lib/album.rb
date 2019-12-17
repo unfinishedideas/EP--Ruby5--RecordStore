@@ -48,6 +48,15 @@ class Album
     @@albums.values().select {|e| /#{string}/i.match(e.name) }
   end
 
+  def self.sort(input)
+    # @@albums.sort_by {|e| input.match(e.name) }
+    if input == 'artist'
+      @@albums.values().sort{ |a, b| a.artist <=> b.artist }
+    elsif input == 'name'
+      @@albums.values().sort{ |a, b| a.name <=> b.name }
+    end
+  end
+
   def delete
     @@albums.delete(self.id)
   end

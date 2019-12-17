@@ -72,6 +72,28 @@ describe '#Album' do
     end
   end
 
+  describe('.sort') do
+    it("finds an album by id") do
+      album2 = Album.new("ZZZ: The Album", nil, "The artist formerly known as AAA", "Folk")
+      album2.save()
+      album = Album.new("AAA", nil, "ZZZ", "Jazz")
+      album.save()
+      # Album.all()
+      expect(Album.sort('artist')).to(eq(album))
+    end
+  end
+
+  describe('.sort') do
+    it("finds an album by id") do
+      album2 = Album.new("ZZZ: The Album", nil, "The artist formerly known as AAA", "Folk")
+      album2.save()
+      album = Album.new("AAA", nil, "ZZZ", "Jazz")
+      album.save()
+      # Album.all()
+      expect(Album.sort('name')).to(eq(album))
+    end
+  end
+
   # describe('.search') do
   #   it("is capable of searching the albums list by name") do
   #     album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz")
