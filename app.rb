@@ -4,11 +4,6 @@ require('./lib/album')
 require('pry')
 also_reload('lib/**/*.rb')
 
-get('/test') do
-  @something = "this is a variable"
-  erb(:whatever)
-end
-
 get('/') do
   @albums = Album.all
   erb(:albums)
@@ -26,9 +21,12 @@ end
 
 post('/albums') do
   name = params[:album_name]
-  album = Album.new(name, nil)
+  artist = params[:album_artist]
+  genre = params[:album_genre]
+  album = Album.new(name, nil, artist, genre)
   album.save()
   @albums = Album.all()
+  # binding.pry
   erb(:albums)
 end
 
@@ -55,6 +53,7 @@ delete('/albums/:id') do
   @albums = Album.all
   erb(:albums)
 end
+
 
 # get('/custom_route') do
 #   "We can even create custom routes, but we should only do this when needed."

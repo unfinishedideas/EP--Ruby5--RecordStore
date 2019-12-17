@@ -10,18 +10,20 @@
   <button type="submit" class="btn">Go!</button>
 </form>
 
+<h3>Edit</h3>
 <% @albums.each do |album| %>
-    <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
-  <% end %>
-
-<% if @albums.any? %>
-  <ul>
-    <% @albums.each do |album| %>
-      <li><%= album.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are currently no records to display.</p>
+<li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
 <% end %>
 
+<h3>List</h3>
+<% if @albums.any? %>
+
+<% @albums.each do |album| %>
+<li><%= album.name %></li>
+<% end %>
+
+<% else %>
+<p>There are currently no records to display.</p>
+<% end %>
+<br>
 <a href="/albums/new">Add a new album</a>

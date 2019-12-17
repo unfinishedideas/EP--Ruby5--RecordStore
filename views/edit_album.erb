@@ -5,14 +5,22 @@
 
   <label for="name">Rename album</label>
   <input id="name" name="name" type="text">
-
+  <br>
+  <label for="artist">Artist</label>
+  <input id="artist" name="artist" type="text">
+  <br>
+  <label for="genre">Genre</label>
+  <input id="genre" name="genre" type="text">
+  <hr>
   <button type="submit">Update</button>
 </form>
-
+<br>
 <p><a href="/albums">Return to album list</a></p>
+<br>
+
+
 
 <form action="/albums/<%= @album.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete album</button>
+  <button type="submit" class="btn-danger">Delete album</button>
 </form>
