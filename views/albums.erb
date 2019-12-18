@@ -17,18 +17,30 @@
     <input type="radio" name="sort" value="nil">
     <br>
   </div>
-  <button type="submit" class="btn">Go!</button>
+  <button type="submit" class="btn-success">Go!</button>
 </form>
 
-<h3>List</h3>
+<h3>Available Albums</h3>
 <% if @albums.any? %>
 
 <% @albums.each do |album| %>
-<li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
+<li><a href="/albums/<%= album.id %>"><%= album.name %></a><br><button type="button" class="btn-success" name="sell" value="sell<%= album.id %>">Buy Album</button></li>
 <% end %>
 
 <% else %>
 <p>There are currently no records to display.</p>
 <% end %>
 <br>
+
+<h3>Currently Sold Out</h3>
+<% if @sold_out.any? %>
+<% @sold_out.each do |album| %>
+<p class="sold_out"><%= album.name %></p><br>
+<% end %>
+
+<% else %>
+<p>There are currently no sold out records!</p>
+<% end %>
+<br>
+
 <a href="/albums/new">Add a new album</a>

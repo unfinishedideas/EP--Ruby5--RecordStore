@@ -2,6 +2,7 @@ class Album
   attr_reader :id, :name, :artist, :genre  #Our new save method will need reader methods.
 
   @@albums = {}
+  @@sold_albums = {}
   @@total_rows = 0 # We've added a class variable to keep track of total rows and increment the value when an ALbum is added.
 
   def initialize(name, id, artist, genre) # We've added id as a second parameter.
@@ -23,20 +24,20 @@ class Album
     self.name() == album_to_compare.name() && self.artist() == album_to_compare.artist() && self.genre() == album_to_compare.genre()
   end
 
-  # def ==(other_album)
-  #   self.name.eql?(other_album.name) && self.artist.eql?(other_album.artist) && self.genre.eql?(other_album.genre) && self.genre.eql?(other_album.genre)
-  # end
-
   def self.all
     @@albums.values()
   end
-
-  def self.all2
-    return @@albums
+  def self.get_sold
+    @@sold_albums.values()
   end
+
+  # def self.all2
+  #   return @@albums
+  # end
 
   def self.clear
     @@albums = {}
+    @@sold_albums = {}
     @@total_rows = 0
   end
 
@@ -59,6 +60,11 @@ class Album
 
   def delete
     @@albums.delete(self.id)
+  end
+
+  def buy_album
+      @@sold_albums[self.id] = @@albums[self.id]
+      @@albums.delete(self.id)
   end
 
 end

@@ -6,15 +6,16 @@ also_reload('lib/**/*.rb')
 
 get('/') do
   @albums = Album.all
+  @sold_out = Album.get_sold
   erb(:albums)
 end
 
 get('/albums') do
-  # if params[:search]
-  #   @albums = Album.search(params[:search])
-  if params[:sort]
+  @sold_out = Album.get_sold
+  if params[:search]
+    @albums = Album.search(params[:search])
+  elsif params[:sort]
     @albums = Album.sort(params[:sort])
-    # binding.pry
   else
     @albums = Album.all
   end
@@ -32,6 +33,7 @@ post('/albums') do
   album = Album.new(name, nil, artist, genre)
   album.save()
   @albums = Album.all()
+  @sold_out = Album.get_sold
   # binding.pry
   erb(:albums)
 end
@@ -50,6 +52,7 @@ patch('/albums/:id') do
 @album  = Album.find(params[:id].to_i())
 @album.update(params[:name])
 @albums = Album.all
+@sold_out = Album.get_sold
 erb(:albums)
 end
 
@@ -57,6 +60,7 @@ delete('/albums/:id') do
   @album = Album.find(params[:id].to_i())
   @album.delete()
   @albums = Album.all
+  @sold_out = Album.get_sold
   erb(:albums)
 end
 
